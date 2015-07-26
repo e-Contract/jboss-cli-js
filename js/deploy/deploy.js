@@ -65,7 +65,11 @@ config.deployments.forEach(function(deployment) {
 });
 
 print("DEPLOYMENTS");
-cli.cmd("ls /deployment");
+var result = cli.cmd("/deployment=*:read-resource").getResponse().get("result").asList();
+for (var idx = 0; idx < result.size(); idx++) {
+	var item = result.get(idx);
+	print(item.get("result").get("name").asString());
+}
 
 cli.disconnect();
 
