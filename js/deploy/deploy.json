@@ -1,0 +1,13 @@
+{
+	connect: {
+		host: "localhost",
+		port: 9999,
+		username: null,
+		password: null
+	},
+	deployments: [
+		{
+			file: "/home/fcorneli/.m2/repository/be/e-contract/eid-idp/eid-idp-deploy/2.0.10/eid-idp-deploy-2.0.10-production.ear"
+		}
+	]
+}
