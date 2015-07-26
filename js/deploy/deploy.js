@@ -7,7 +7,12 @@ print("Javascript version: " + languageVersion);
 var config = eval('(' + readFile("js/deploy/deploy.json") + ')');
 
 cli = CLI.newInstance();
-cli.connect(config.connect.host, config.connect.port, config.connect.username, config.connect.password);
+try {
+	cli.connect(config.connect.host, config.connect.port, config.connect.username, config.connect.password);
+} catch(error) {
+	print("Error connecting to: " + config.connect.host + ":" + config.connect.port);
+	java.lang.System.exit(1);
+}
 
 config.deployments.forEach(function(deployment) {
 	if (typeof deployment.name === "undefined") {
