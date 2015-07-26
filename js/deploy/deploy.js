@@ -22,6 +22,8 @@ config.deployments.forEach(function(deployment) {
 	}
 });
 
+var errors = new Array();
+
 config.deployments.forEach(function(deployment) {
 	if (typeof deployment.name === "undefined") {
 		deployment.name = deployment.file.split("/").reverse()[0];
@@ -36,7 +38,9 @@ config.deployments.forEach(function(deployment) {
 			if (outcome.equals("success")) {
 				print("Successfully undeployed previous: " + deployment.undeploy);
 			} else {
-				print("Error undeploying previous: " + deployment.undeploy);
+				var error = "Error undeploying previous: " + deployment.undeploy;
+				print(error);
+				errors.push(error);
 			}
 		}
 	}
@@ -51,11 +55,25 @@ config.deployments.forEach(function(deployment) {
 			print("Successfully deployed: " + deployment.name);
 		}
 		else {
-			print("Error deploying: " + deployment.name);
+			var error = "Error deploying: " + deployment.name;
+			print(error);
+			errors.push(error);
 		}
 	} else {
 		print("Already deployed: " + deployment.name);
 	}
 });
 
+print("DEPLOYMENTS");
+cli.cmd("ls /deployment");
+
 cli.disconnect();
+
+if (errors.length === 0) {
+	print("ALL WENT OK");
+} else {
+	print("ERRORS OCCURRED");
+	errors.forEach(function(error) {
+		print("ERROR: " + error);
+	});
+}

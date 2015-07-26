@@ -7,6 +7,9 @@
 	},
 	deployments: [
 		{
+			file: "/home/fcorneli/.m2/repository/be/fedict/eid-trust-service/eid-trust-service-deploy/2.1.2/eid-trust-service-deploy-2.1.2-production.ear"
+		},
+		{
 			file: "/home/fcorneli/.m2/repository/be/e-contract/eid-idp/eid-idp-deploy/2.0.9/eid-idp-deploy-2.0.9-production.ear"
 		},
 		{
