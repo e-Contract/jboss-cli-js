@@ -15,6 +15,14 @@ try {
 }
 
 config.deployments.forEach(function(deployment) {
+	var file = new java.io.File(deployment.file);
+	if (!file.exists()) {
+		print("File does not exist: " + deployment.file);
+		java.lang.System.exit(1);
+	}
+});
+
+config.deployments.forEach(function(deployment) {
 	if (typeof deployment.name === "undefined") {
 		deployment.name = deployment.file.split("/").reverse()[0];
 	}
