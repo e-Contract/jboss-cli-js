@@ -26,6 +26,20 @@ config.deployments.forEach(function(deployment) {
 	if (typeof deployment.name === "undefined") {
 		deployment.name = deployment.file.split("/").reverse()[0];
 	}
+	if (typeof deployment.undeploy !== "undefined") {
+		var result = cli.cmd("/deployment=" + deployment.undeploy + ":read-resource");
+		var outcome = result.getResponse().get("outcome").asString();
+		if (outcome.equals("success")) {
+			print("Undeploying previous: " + deployment.undeploy);
+			result = cli.cmd("undeploy " + deployment.undeploy);
+			outcome = result.getResponse().get("outcome").asString();
+			if (outcome.equals("success")) {
+				print("Successfully undeployed previous: " + deployment.undeploy);
+			} else {
+				print("Error undeploying previous: " + deployment.undeploy);
+			}
+		}
+	}
 	print("Checking " + deployment.name);
 	var result = cli.cmd("/deployment=" + deployment.name + ":read-resource");
 	var outcome = result.getResponse().get("outcome").asString();

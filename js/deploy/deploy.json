@@ -7,6 +7,10 @@
 	},
 	deployments: [
 		{
+			file: "/home/fcorneli/.m2/repository/be/e-contract/eid-idp/eid-idp-deploy/2.0.9/eid-idp-deploy-2.0.9-production.ear"
+		},
+		{
+			undeploy: "eid-idp-deploy-2.0.9-production.ear",
 			file: "/home/fcorneli/.m2/repository/be/e-contract/eid-idp/eid-idp-deploy/2.0.10/eid-idp-deploy-2.0.10-production.ear"
 		}
 	]
