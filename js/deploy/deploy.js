@@ -1,4 +1,4 @@
-importPackage(org.jboss.as.cli.scriptsupport)
+importPackage(org.jboss.as.cli.scriptsupport);
 
 var currentContext = org.mozilla.javascript.Context.getCurrentContext();
 var languageVersion = currentContext.getLanguageVersion();
